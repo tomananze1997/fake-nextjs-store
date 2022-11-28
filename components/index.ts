@@ -1,1 +1,2 @@
-export { HelloWorld } from 'components/HelloWorld';
+export * from 'components/structure';
+export * from 'components/common';
