@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 export const ErrorPage = () => {
   const router = useRouter();
-  const redirectTimeout = () => window.setTimeout(() => router.push('/'), 3000);
+  const redirectTimeout = () => setTimeout(() => router.push('/'), 3000);
 
   useEffect(() => {
     redirectTimeout();

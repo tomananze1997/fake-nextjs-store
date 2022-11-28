@@ -1,13 +1,10 @@
-import { axiosConfig } from 'helpers';
+import { Carousel } from 'components';
 import type { NextPage } from 'next';
-import { useCategories } from 'providers';
-import { useEffect } from 'react';
-import type { Category } from 'types';
 
 const Home: NextPage = () => (
-    <>
-      <div>Index Page</div>
-    </>
-  );
+  <>
+    <Carousel />
+  </>
+);
 
 export default Home;

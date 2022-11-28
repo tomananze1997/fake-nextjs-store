@@ -13,7 +13,6 @@ import { useCategories } from 'providers';
 import type { FC } from 'react';
 import type { Category } from 'types';
 
-//todo types
 export const Nav: FC = () => {
   const router: NextRouter = useRouter();
   const { categories } = useCategories();
@@ -53,7 +52,7 @@ export const Nav: FC = () => {
                   "trans relative before:absolute before:bottom-0 before:left-0 before:block before:h-[1px] before:w-full before:origin-top-left before:scale-x-0 before:bg-black before:transition before:duration-300 before:ease-in-out before:content-[''] hover:text-neutral-900 before:hover:scale-x-100",
                   {
                     'text-neutral-900 underline decoration-2 underline-offset-2':
-                      router.pathname === `/categories/${category.id}`
+                      router.asPath === `/categories/${category.id}`
                   }
                 )}
                 prefetch={false}
