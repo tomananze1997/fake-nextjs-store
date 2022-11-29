@@ -1,5 +1,5 @@
-import { axiosConfig } from '../../helpers';
 import { CategoriesContext } from './CategoriesContext';
+import { axiosConfig } from 'helpers';
 import { useEffect, useState } from 'react';
 import type { FC, ReactNode } from 'react';
 import type { Category } from 'types';
