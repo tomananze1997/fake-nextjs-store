@@ -3,10 +3,13 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { IconButton } from '@mui/material';
 import classNames from 'classnames';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import type { NextRouter } from 'next/router';
 import { useCategories } from 'providers';
 import { useEffect, useState } from 'react';
 
 export const Carousel = () => {
+  const router: NextRouter = useRouter();
   const { categories } = useCategories();
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState<number>(1);
 
@@ -27,12 +30,14 @@ export const Carousel = () => {
   };
 
   useEffect(() => {
-    categories && carouselInterval();
+    categories.length > 0 && carouselInterval();
 
     return clearInterval(carouselInterval);
   }, []);
 
   const nextCarouselImage = (next = true) => {
+    console.log(next, currentCategoryIndex, categories.length);
+
     if (categories.length === 0) return;
 
     if (next && currentCategoryIndex < categories.length) {
@@ -70,8 +75,9 @@ export const Carousel = () => {
           categories.map((category) => (
             <div
               key={category.id}
+              onClick={() => router.push(`/categories/${category.id}`)}
               className={classNames(
-                'absolute flex h-full w-full duration-1000 ease-in',
+                'absolute flex h-full w-full cursor-pointer duration-1000 ease-in',
                 {
                   'visible ': currentCategoryIndex === category.id,
                   'invisible ': currentCategoryIndex !== category.id

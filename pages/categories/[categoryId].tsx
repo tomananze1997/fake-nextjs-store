@@ -1,3 +1,4 @@
+import { Card } from 'components';
 import { axiosConfig } from 'helpers';
 import type { NextPage } from 'next';
 import type { Product } from 'types';
@@ -8,9 +9,9 @@ type CategoriesProps = {
 
 const Category: NextPage<CategoriesProps> = ({ products }) => (
   <>
-    <div>
+    <div className={'m-6 flex flex-wrap justify-between'}>
       {products?.map((product) => (
-        <p key={product.id}>{product.title}</p>
+        <Card key={product.id} product={product} styles={'m-2'} />
       ))}
     </div>
   </>

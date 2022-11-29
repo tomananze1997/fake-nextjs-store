@@ -6,6 +6,12 @@ const nextConfig = {
 
 module.exports = {
   images: {
-    domains: ['api.lorem.space']
+    domains: [
+      'api.lorem.space',
+      'placeimg.com',
+      'loc.ru',
+      'm.ru',
+      'fikiwiki.com'
+    ]
   }
 };
