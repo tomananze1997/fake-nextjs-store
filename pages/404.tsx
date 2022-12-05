@@ -4,12 +4,11 @@ import { useEffect } from 'react';
 
 export const ErrorPage = () => {
   const router = useRouter();
-  const redirectTimeout = () => setTimeout(() => router.push('/'), 3000);
 
   useEffect(() => {
-    redirectTimeout();
+    const redirectTimeout = setTimeout(() => router.push('/'), 3000);
     return () => clearTimeout(redirectTimeout);
-  }, [redirectTimeout]);
+  }, [router]);
 
   return (
     <div className={'flex h-full'}>

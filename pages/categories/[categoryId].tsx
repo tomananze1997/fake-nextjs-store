@@ -1,6 +1,6 @@
 import { Card } from 'components';
 import { axiosConfig } from 'helpers';
-import type { NextPage } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import type { Product } from 'types';
 
 type CategoriesProps = {
@@ -9,7 +9,7 @@ type CategoriesProps = {
 
 const Category: NextPage<CategoriesProps> = ({ products }) => (
   <>
-    <div className={'m-6 flex flex-wrap justify-between'}>
+    <div className={'m-6 flex flex-wrap justify-center'}>
       {products?.map((product) => (
         <Card key={product.id} product={product} styles={'m-2'} />
       ))}
@@ -31,8 +31,12 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
-  const categoryId: string = context.params.categoryId;
+type StaticProps = {
+  products: Product[];
+};
+
+export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
+  const categoryId: string | string[] | undefined = context.params?.categoryId;
   const response = await axiosConfig.get(`/categories/${categoryId}/products`);
 
   return {

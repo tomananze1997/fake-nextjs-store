@@ -11,7 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
-import { useCategories } from 'providers';
+import { useCartProducts, useCategories, useLikedProducts } from 'providers';
 import type { FC } from 'react';
 import type { Category } from 'types';
 
@@ -23,8 +23,8 @@ export const Nav: FC = () => {
   const clickableSpanStyle = 'cursor-pointer hover:opacity-70';
   const iconStyle = 'hover:text-black';
 
-  const isItemLiked = false;
-  const isBagFilled = false;
+  const { likedProducts } = useLikedProducts();
+  const { cartProducts } = useCartProducts();
   // const isLikedItemOpen = false;
   // const isCartOpen = false;
 
@@ -71,14 +71,14 @@ export const Nav: FC = () => {
               <AccountCircle className={iconStyle} />
             </IconButton>
             <IconButton onClick={() => alert('Add liked items modal')}>
-              {isItemLiked ? (
+              {likedProducts.length > 0 ? (
                 <Favorite className={iconStyle} />
               ) : (
                 <FavoriteBorderOutlined className={iconStyle} />
               )}
             </IconButton>
             <IconButton onClick={() => alert('Add bag modal')}>
-              {isBagFilled ? (
+              {cartProducts.length > 0 ? (
                 <ShoppingBag className={iconStyle} />
               ) : (
                 <ShoppingBagOutlined className={iconStyle} />
