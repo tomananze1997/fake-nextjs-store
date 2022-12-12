@@ -1,12 +1,12 @@
-import { useLikedProducts } from '../providers';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { IconButton } from '@mui/material';
 import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useLikedProducts } from 'providers';
 import type { FC } from 'react';
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Product } from 'types';
 
 type CardProps = {
@@ -16,36 +16,33 @@ type CardProps = {
 };
 
 export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
-  let isItemLiked = false;
+  const [isItemLiked, setIsItemLiked] = useState<boolean>(false);
   const router = useRouter();
-  const { likedProducts, setLikedProducts } = useLikedProducts();
+  const [likedProducts, toggleLikedProduct] = useLikedProducts();
+
+  const checkIfItemIsLiked = useCallback(
+    (product: Product) => {
+      const newBoolean = likedProducts.some(
+        ({ id }: { id: number }) => id === product.id
+      );
+      setIsItemLiked(newBoolean);
+    },
+    [likedProducts]
+  );
 
   useEffect(() => {
     checkIfItemIsLiked(product);
-  }, [likedProducts, isItemLiked]);
+  }, [checkIfItemIsLiked, likedProducts, product]);
 
-  const checkIfItemIsLiked = (product: Product): void => {
-    isItemLiked = likedProducts.some(
-      ({ id }: { id: number }) => id === product.id
-    );
-  };
-
-  const addOrRemoveElementInProvider = (product: Product): void => {
-    if (isItemLiked) {
-      const newProductsArray: Product[] = likedProducts.filter(
-        ({ id }: { id: number }) => id !== product.id
-      );
-      setLikedProducts(newProductsArray);
-    } else {
-      setLikedProducts((prevState) => [...prevState, product]);
-    }
+  const handleLikeClick = (product: Product): void => {
+    toggleLikedProduct(product);
   };
 
   const shortenString = (element: string): string => {
     if (small && element.length < 10) {
-      return element.substring(0, 9) + '...';
+      return element.substring(0, 13) + '...';
     } else if (!small && element.length < 15) {
-      return element.substring(0, 3) + '...';
+      return element.substring(0, 20) + '...';
     } else {
       return element;
     }
@@ -53,7 +50,7 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
 
   return (
     <>
-      {product ? (
+      {product && product.images[0].includes('https://api.lorem') ? (
         <div
           className={classNames(
             'box relative cursor-pointer hover:scale-105 hover:shadow-lg hover:duration-1000',
@@ -65,7 +62,7 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
           )}
         >
           <IconButton
-            onClick={() => addOrRemoveElementInProvider(product)}
+            onClick={() => handleLikeClick(product)}
             className={'!absolute right-2 top-3 z-10 bg-white hover:bg-white'}
           >
             {isItemLiked ? (

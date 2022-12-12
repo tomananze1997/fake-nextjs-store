@@ -1,13 +1,16 @@
-import type { Dispatch, SetStateAction } from 'react';
 import { createContext } from 'react';
 import type { Product } from 'types';
 
 type CartProductsContextType = {
   cartProducts: Product[];
-  setCartProducts: Dispatch<SetStateAction<Product[]>>;
+  addCartProduct: (item: Product) => void | Product[];
+  removeProduct: (item: Product) => void;
+  removeAllProducts: () => void;
 };
 
 export const CartProductsContext = createContext<CartProductsContextType>({
   cartProducts: [],
-  setCartProducts: () => []
+  addCartProduct: () => [],
+  removeProduct: () => [],
+  removeAllProducts: () => []
 });

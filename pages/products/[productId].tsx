@@ -1,55 +1,27 @@
-import { axiosConfig } from '../../helpers';
-import classNames from 'classnames';
+import { SingleItemInputs, SingleItemPictures } from 'components';
+import { axiosConfig } from 'helpers';
 import type { GetStaticProps, NextPage } from 'next';
-import Image from 'next/image';
-import { useState } from 'react';
 import type { Product } from 'types';
 
 type ProductIdType = {
   product: Product;
 };
 
-const ProductId: NextPage<ProductIdType> = ({ product }) => {
-  const [activeImage, setActiveImage] = useState(product.images[0]);
-
-  return (
+const ProductId: NextPage<ProductIdType> = ({ product }) => (
     <>
-      {product.images && activeImage ? (
-        <div>
-          <section>
-            <div>
-              {product.images.map((image: string, idx: number) => (
-                <div
-                  className={classNames('relative my-4 h-24 w-24', {
-                    'border-2 border-black': activeImage === image
-                  })}
-                  key={idx}
-                  onClick={() => {
-                    setActiveImage(image);
-                  }}
-                >
-                  <Image
-                    src={image}
-                    alt={`${product.title}, picture ${idx}`}
-                    fill={true}
-                    className={'object-cover'}
-                  />
-                </div>
-              ))}
-            </div>
-            <div className={'relative h-96 w-96'}>
-              <Image src={activeImage} alt={product.title} fill={true} />
-            </div>
-          </section>
-          <section>
-            <h1>{product.title}</h1>
-            <p>{product.description}</p>
-          </section>
+      {product ? (
+        <div className={'m-4 flex justify-center'}>
+          <SingleItemPictures product={product} outerStyles={'mr-48'} />
+          <SingleItemInputs product={product} />
         </div>
-      ) : null}
+      ) : (
+        <div>
+          <h1>Error!</h1>
+          <h2>Cannot find this product.</h2>
+        </div>
+      )}
     </>
   );
-};
 
 export const getStaticPaths = async () => {
   const paths: { params: { productId: string } }[] = [];

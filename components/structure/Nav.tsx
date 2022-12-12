@@ -13,20 +13,24 @@ import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
 import { useCartProducts, useCategories, useLikedProducts } from 'providers';
 import type { FC } from 'react';
+import { useEffect } from 'react';
 import type { Category } from 'types';
 
 export const Nav: FC = () => {
   const router: NextRouter = useRouter();
-  const { categories } = useCategories();
+  const [categories] = useCategories();
 
   const linkStyle = 'mx-2 text-lg text-sm font-semibold text-neutral-600';
   const clickableSpanStyle = 'cursor-pointer hover:opacity-70';
   const iconStyle = 'hover:text-black';
 
-  const { likedProducts } = useLikedProducts();
-  const { cartProducts } = useCartProducts();
+  const [likedProducts] = useLikedProducts();
+  const [cartProducts] = useCartProducts();
   // const isLikedItemOpen = false;
   // const isCartOpen = false;
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  useEffect(() => {}, [likedProducts, cartProducts]);
 
   return (
     <>
@@ -36,7 +40,7 @@ export const Nav: FC = () => {
         <span className={clickableSpanStyle}>100-day return period</span>
       </div>
 
-      <div className='bg-gradient-to-t from-orange-400 to-neutral-200 '>
+      <div className=' bg-gradient-to-t from-orange-400 to-neutral-200 '>
         <Image
           src={'/logo.png'}
           alt={'logo'}

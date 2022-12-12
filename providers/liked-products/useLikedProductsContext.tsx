@@ -2,7 +2,8 @@ import { LikedProductsContext } from './LikedProductsContext';
 import { useContext } from 'react';
 
 export const useLikedProducts = () => {
-  const { likedProducts, setLikedProducts } = useContext(LikedProductsContext);
+  const { likedProducts, toggleLikedProduct, removeLikedProducts } =
+    useContext(LikedProductsContext);
 
-  return { likedProducts, setLikedProducts };
+  return [likedProducts, toggleLikedProduct, removeLikedProducts] as const;
 };

@@ -1,13 +1,14 @@
 import { createContext } from 'react';
-import type { Dispatch, SetStateAction } from 'react';
 import type { Product } from 'types';
 
 type LikedProductsContextType = {
   likedProducts: Product[];
-  setLikedProducts: Dispatch<SetStateAction<Product[]>>;
+  toggleLikedProduct: (item: Product) => void;
+  removeLikedProducts: (item: Product) => void;
 };
 
 export const LikedProductsContext = createContext<LikedProductsContextType>({
   likedProducts: [],
-  setLikedProducts: () => []
+  toggleLikedProduct: () => [],
+  removeLikedProducts: () => []
 });

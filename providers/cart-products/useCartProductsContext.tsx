@@ -2,7 +2,13 @@ import { CartProductsContext } from './CartProductsContext';
 import { useContext } from 'react';
 
 export const useCartProducts = () => {
-  const { cartProducts, setCartProducts } = useContext(CartProductsContext);
+  const { cartProducts, addCartProduct, removeProduct, removeAllProducts } =
+    useContext(CartProductsContext);
 
-  return { cartProducts, setCartProducts };
+  return [
+    cartProducts,
+    addCartProduct,
+    removeProduct,
+    removeAllProducts
+  ] as const;
 };
