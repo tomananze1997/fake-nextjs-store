@@ -1,1 +1,2 @@
-export { ItemDropdown } from './ItemDropdown';
+export { Dropdown } from './Dropdown';
+export { NavIcons } from './NavIcons';

@@ -39,10 +39,10 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
   };
 
   const shortenString = (element: string): string => {
-    if (small && element.length < 10) {
-      return element.substring(0, 13) + '...';
-    } else if (!small && element.length < 15) {
-      return element.substring(0, 20) + '...';
+    if (small && element.length > 20) {
+      return element.substring(0, 17) + '...';
+    } else if (!small && element.length > 30) {
+      return element.substring(0, 27) + '...';
     } else {
       return element;
     }

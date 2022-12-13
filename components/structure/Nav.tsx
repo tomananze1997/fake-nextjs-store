@@ -1,36 +1,20 @@
-import {
-  AccountCircle,
-  Favorite,
-  FavoriteBorderOutlined,
-  ShoppingBag,
-  ShoppingBagOutlined
-} from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import classNames from 'classnames';
+import { NavIcons } from 'components';
 import Image from 'next/image';
 import Link from 'next/link';
 import type { NextRouter } from 'next/router';
 import { useRouter } from 'next/router';
-import { useCartProducts, useCategories, useLikedProducts } from 'providers';
+import { useCategories } from 'providers';
 import type { FC } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import type { Category } from 'types';
 
-export const Nav: FC = () => {
-  const router: NextRouter = useRouter();
-  const [categories] = useCategories();
-
+export const Nav: FC<React.ReactElement> = () => {
   const linkStyle = 'mx-2 text-lg text-sm font-semibold text-neutral-600';
   const clickableSpanStyle = 'cursor-pointer hover:opacity-70';
-  const iconStyle = 'hover:text-black';
 
-  const [likedProducts] = useLikedProducts();
-  const [cartProducts] = useCartProducts();
-  // const isLikedItemOpen = false;
-  // const isCartOpen = false;
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  useEffect(() => {}, [likedProducts, cartProducts]);
+  const router: NextRouter = useRouter();
+  const [categories] = useCategories();
 
   return (
     <>
@@ -71,23 +55,7 @@ export const Nav: FC = () => {
             ))}
           </nav>
           <section className={'ml-auto mr-3'}>
-            <IconButton onClick={() => alert('Add login modal')}>
-              <AccountCircle className={iconStyle} />
-            </IconButton>
-            <IconButton onClick={() => alert('Add liked items modal')}>
-              {likedProducts.length > 0 ? (
-                <Favorite className={iconStyle} />
-              ) : (
-                <FavoriteBorderOutlined className={iconStyle} />
-              )}
-            </IconButton>
-            <IconButton onClick={() => alert('Add bag modal')}>
-              {cartProducts.length > 0 ? (
-                <ShoppingBag className={iconStyle} />
-              ) : (
-                <ShoppingBagOutlined className={iconStyle} />
-              )}
-            </IconButton>
+            <NavIcons />
           </section>
         </div>
       </div>

@@ -1,5 +1,4 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -82,7 +81,7 @@ export const Carousel = () => {
                     '!absolute left-2 top-1/3 z-10 z-10 h-2/6'
                   )}
                 >
-                  <ArrowBackIosIcon />
+                  <ArrowBackIos />
                 </IconButton>
                 <IconButton
                   onClick={() => handleClick()}
@@ -91,7 +90,7 @@ export const Carousel = () => {
                     '!absolute right-2 top-1/3 z-10 z-10 h-2/6'
                   )}
                 >
-                  <ArrowForwardIosIcon />
+                  <ArrowForwardIos />
                 </IconButton>
                 <div
                   className={'relative h-full w-full cursor-pointer'}
