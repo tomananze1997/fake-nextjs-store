@@ -20,7 +20,7 @@ export const ErrorPage = () => {
         <h2 className={'mt-4 text-xl font-bold text-orange-500'}>
           The page you are looking for does not exist!
         </h2>
-        <CustomButton customStyles={'mb-2 mt-12'} submit={true}>
+        <CustomButton customStyles={'mb-2 mt-12 !bg'}>
           Back to homepage
         </CustomButton>
       </div>

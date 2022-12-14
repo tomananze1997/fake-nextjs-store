@@ -9,7 +9,7 @@ import type { FC } from 'react';
 import React from 'react';
 import type { Category } from 'types';
 
-export const Nav: FC<React.ReactElement> = () => {
+export const Nav: FC = () => {
   const linkStyle = 'mx-2 text-lg text-sm font-semibold text-neutral-600';
   const clickableSpanStyle = 'cursor-pointer hover:opacity-70';
 

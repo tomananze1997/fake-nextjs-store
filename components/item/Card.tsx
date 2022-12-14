@@ -12,10 +12,9 @@ import type { Product } from 'types';
 type CardProps = {
   product: Product;
   styles?: string;
-  small?: boolean;
 };
 
-export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
+export const Card: FC<CardProps> = ({ product, styles }) => {
   const [isItemLiked, setIsItemLiked] = useState<boolean>(false);
   const router = useRouter();
   const [likedProducts, toggleLikedProduct] = useLikedProducts();
@@ -39,9 +38,7 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
   };
 
   const shortenString = (element: string): string => {
-    if (small && element.length > 20) {
-      return element.substring(0, 17) + '...';
-    } else if (!small && element.length > 30) {
+    if (element.length > 30) {
       return element.substring(0, 27) + '...';
     } else {
       return element;
@@ -53,12 +50,8 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
       {product && product.images[0].includes('https://api.lorem') ? (
         <div
           className={classNames(
-            'box relative cursor-pointer hover:scale-105 hover:shadow-lg hover:duration-1000',
-            styles,
-            {
-              'h-56 w-32': small,
-              'h-80 w-56': !small
-            }
+            'box relative h-80 w-56 cursor-pointer hover:scale-105 hover:shadow-lg hover:duration-1000',
+            styles
           )}
         >
           <IconButton
@@ -71,6 +64,7 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
               <FavoriteBorderOutlinedIcon className={'hover:text-black'} />
             )}
           </IconButton>
+
           <div
             className={'h-full'}
             onClick={() => router.push(`/products/${product.id}`)}
@@ -80,7 +74,7 @@ export const Card: FC<CardProps> = ({ product, styles, small = false }) => {
                 src={product.images[0]}
                 alt={product.title}
                 fill={true}
-                className={'object-cover object-center'}
+                className={'object-cover'}
               />
             </div>
             <h1>{shortenString(product.title)}</h1>

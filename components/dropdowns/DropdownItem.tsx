@@ -1,11 +1,9 @@
-import { ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import { IconButton } from '@mui/material';
 import classNames from 'classnames';
+import { ItemInputQuantity } from 'components';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useCartProducts } from 'providers';
 import type { FC } from 'react';
-import React, { useState } from 'react';
+import React from 'react';
 import type { Product } from 'types';
 
 type DropdownItemProps = {
@@ -18,16 +16,10 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   otherStyles
 }) => {
   const router = useRouter();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [quantity, setQuantity] = useState(
-    product.quantity ? product.quantity : null
-  );
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [_, addCartProduct, removeCartProduct] = useCartProducts();
   const shortenString = (element: string): string => {
-    if (element.length > 17) {
-      return element.substring(0, 14) + '...';
+    if (element.length > 18) {
+      return element.substring(0, 15) + '...';
     } else {
       return element;
     }
@@ -47,24 +39,14 @@ export const DropdownItem: FC<DropdownItemProps> = ({
             src={product.images[0]}
             alt={product.title}
             fill={true}
-            className={'object-cover object-center'}
+            className={'object-cover'}
           />
         </div>
         <div className={'ml-3 text-left'}>
           <h1>{shortenString(product.title)}</h1>
           <h1>{product.price}$</h1>
 
-          {product.quantity ? (
-            <div className={'z-50 flex'}>
-              <IconButton onClick={() => removeCartProduct(product)}>
-                <ArrowBackIos className={'w-4'} />
-              </IconButton>
-              <span className={'my-auto'}>{quantity}</span>
-              <IconButton onClick={() => addCartProduct(product)}>
-                <ArrowForwardIos className={'w-4'} />
-              </IconButton>
-            </div>
-          ) : null}
+          {product.quantity ? <ItemInputQuantity product={product} /> : null}
         </div>
       </div>
     </>

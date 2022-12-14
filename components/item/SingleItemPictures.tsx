@@ -34,7 +34,7 @@ export const SingleItemPictures: FC<SingleItemPicturesType> = ({
                   src={image}
                   alt={`${product.title}, picture ${idx}`}
                   fill={true}
-                  className={'object-cover object-center'}
+                  className={'object-cover'}
                 />
               </div>
             ))}

@@ -8,12 +8,12 @@ import type { FC, FormEvent } from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import type { Product } from 'types';
 
-type SingleItemInputsProps = {
+type SingleItemInfoProps = {
   product: Product;
   outerStyles?: string;
 };
 
-export const SingleItemInputs: FC<SingleItemInputsProps> = ({
+export const SingleItemInfo: FC<SingleItemInfoProps> = ({
   product,
   outerStyles
 }) => {

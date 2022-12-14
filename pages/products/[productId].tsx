@@ -1,4 +1,4 @@
-import { SingleItemInputs, SingleItemPictures } from 'components';
+import { SingleItemInfo, SingleItemPictures } from 'components';
 import { axiosConfig } from 'helpers';
 import type { GetStaticProps, NextPage } from 'next';
 import type { Product } from 'types';
@@ -8,20 +8,20 @@ type ProductIdType = {
 };
 
 const ProductId: NextPage<ProductIdType> = ({ product }) => (
-    <>
-      {product ? (
-        <div className={'m-4 flex justify-center'}>
-          <SingleItemPictures product={product} outerStyles={'mr-48'} />
-          <SingleItemInputs product={product} />
-        </div>
-      ) : (
-        <div>
-          <h1>Error!</h1>
-          <h2>Cannot find this product.</h2>
-        </div>
-      )}
-    </>
-  );
+  <>
+    {product ? (
+      <div className={'m-4 flex justify-center'}>
+        <SingleItemPictures product={product} outerStyles={'mr-48'} />
+        <SingleItemInfo product={product} />
+      </div>
+    ) : (
+      <div>
+        <h1>Error!</h1>
+        <h2>Cannot find this product.</h2>
+      </div>
+    )}
+  </>
+);
 
 export const getStaticPaths = async () => {
   const paths: { params: { productId: string } }[] = [];

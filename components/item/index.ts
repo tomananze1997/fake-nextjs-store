@@ -1,3 +1,4 @@
 export { Card } from './Card';
-export { SingleItemInputs } from './SingleItemInputs';
+export { SingleItemInfo } from './SingleItemInfo';
 export { SingleItemPictures } from './SingleItemPictures';
+export { SingleLikedOrCartItem } from './SingleLikedOrCartItem';

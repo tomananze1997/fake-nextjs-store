@@ -102,7 +102,7 @@ export const Carousel = () => {
                     src={category.image}
                     alt={category.name}
                     fill={true}
-                    className={'object-cover object-center'}
+                    className={'object-cover'}
                   />
                 </div>
               </div>

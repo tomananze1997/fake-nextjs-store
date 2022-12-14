@@ -46,7 +46,6 @@ export const NavIcons: FC = () => {
             <Dropdown
               innerRef={likedDropdownRef}
               isOpen={isLikedItemOpen}
-              setOpen={setLikedItemOpen}
               products={likedProducts}
             />
           )}
@@ -62,7 +61,6 @@ export const NavIcons: FC = () => {
             <Dropdown
               innerRef={cartDropdownRef}
               isOpen={isCartOpen}
-              setOpen={setCartOpen}
               products={cartProducts}
             />
           )}
