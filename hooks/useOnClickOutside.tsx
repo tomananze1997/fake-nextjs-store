@@ -1,11 +1,6 @@
 import type { RefObject } from 'react';
 import { useEffect } from 'react';
 
-// type useOnClickOutsideProps = {
-//   ref: React.RefObject<HTMLElement>,
-//   handler: () => void;
-// };
-
 export const useOnClickOutside = (
   ref: RefObject<HTMLDivElement>,
   handler: () => void

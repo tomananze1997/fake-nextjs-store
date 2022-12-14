@@ -25,7 +25,7 @@ export const CartProductsProvider: FC<CartProductsProviderType> = ({
     if (foundItem) {
       newItemsArray = products.map(({ id }: { id: number }) =>
         item.id === id
-          ? { ...foundItem, quantity: foundItem.quantity!++ }
+          ? { ...foundItem, quantity: foundItem.quantity! + 1 }
           : item
       );
     } else {
@@ -45,7 +45,7 @@ export const CartProductsProvider: FC<CartProductsProviderType> = ({
     if (foundItem.quantity! > 1) {
       newItemsArray = products.map((item) =>
         item.id === foundItem.id
-          ? { ...foundItem, quantity: foundItem.quantity!-- }
+          ? { ...foundItem, quantity: foundItem.quantity! - 1 }
           : item
       );
     } else {

@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from 'react';
+import type { Context, Dispatch, SetStateAction } from 'react';
 import { createContext } from 'react';
 import type { Category } from 'types';
 
@@ -7,7 +7,8 @@ type CategoriesContextType = {
   setCategories: Dispatch<SetStateAction<Category[]>>;
 };
 
-export const CategoriesContext = createContext<CategoriesContextType>({
-  categories: [],
-  setCategories: () => []
-});
+export const CategoriesContext: Context<CategoriesContextType> =
+  createContext<CategoriesContextType>({
+    categories: [],
+    setCategories: () => []
+  });

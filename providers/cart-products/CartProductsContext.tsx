@@ -1,3 +1,4 @@
+import type { Context} from 'react';
 import { createContext } from 'react';
 import type { Product } from 'types';
 
@@ -8,9 +9,10 @@ type CartProductsContextType = {
   removeAllProducts: () => void;
 };
 
-export const CartProductsContext = createContext<CartProductsContextType>({
-  cartProducts: [],
-  addCartProduct: () => [],
-  removeProduct: () => [],
-  removeAllProducts: () => []
-});
+export const CartProductsContext: Context<CartProductsContextType> =
+  createContext<CartProductsContextType>({
+    cartProducts: [],
+    addCartProduct: () => [],
+    removeProduct: () => [],
+    removeAllProducts: () => []
+  });

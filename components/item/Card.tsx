@@ -2,6 +2,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { IconButton } from '@mui/material';
 import classNames from 'classnames';
+import { useShortenedString } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useLikedProducts } from 'providers';
@@ -37,14 +38,6 @@ export const Card: FC<CardProps> = ({ product, styles }) => {
     toggleLikedProduct(product);
   };
 
-  const shortenString = (element: string): string => {
-    if (element.length > 30) {
-      return element.substring(0, 27) + '...';
-    } else {
-      return element;
-    }
-  };
-
   return (
     <>
       {product && product.images[0].includes('https://api.lorem') ? (
@@ -77,7 +70,8 @@ export const Card: FC<CardProps> = ({ product, styles }) => {
                 className={'object-cover'}
               />
             </div>
-            <h1>{shortenString(product.title)}</h1>
+            {/* eslint-disable-next-line react-hooks/rules-of-hooks */}
+            <h1>{useShortenedString(product.title, 30)}</h1>
             <span>{product.price} $</span>
           </div>
         </div>

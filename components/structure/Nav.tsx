@@ -33,7 +33,6 @@ export const Nav: FC = () => {
           className={'mx-auto cursor-pointer'}
           onClick={() => router.push('/')}
         />
-
         <div className={'flex items-center'}>
           <nav className={'px-3'}>
             {categories?.map((category: Category) => (
@@ -54,7 +53,8 @@ export const Nav: FC = () => {
               </Link>
             ))}
           </nav>
-          <section className={'ml-auto mr-3'}>
+
+          <section className={' ml-auto mr-3 w-36'}>
             <NavIcons />
           </section>
         </div>

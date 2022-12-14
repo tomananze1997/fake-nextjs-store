@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { ItemInputQuantity } from 'components';
+import { useShortenedString } from 'hooks';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
@@ -16,14 +17,6 @@ export const DropdownItem: FC<DropdownItemProps> = ({
   otherStyles
 }) => {
   const router = useRouter();
-
-  const shortenString = (element: string): string => {
-    if (element.length > 18) {
-      return element.substring(0, 15) + '...';
-    } else {
-      return element;
-    }
-  };
 
   return (
     <>
@@ -43,7 +36,7 @@ export const DropdownItem: FC<DropdownItemProps> = ({
           />
         </div>
         <div className={'ml-3 text-left'}>
-          <h1>{shortenString(product.title)}</h1>
+          <h1>{useShortenedString(product.title, 18)}</h1>
           <h1>{product.price}$</h1>
 
           {product.quantity ? <ItemInputQuantity product={product} /> : null}

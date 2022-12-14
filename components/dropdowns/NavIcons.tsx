@@ -6,6 +6,7 @@ import {
   ShoppingBagOutlined
 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
+import classNames from 'classnames';
 import { Dropdown } from 'components';
 import { useOnClickOutside } from 'hooks';
 import { useCartProducts, useLikedProducts } from 'providers';
@@ -29,14 +30,14 @@ export const NavIcons: FC = () => {
   return (
     <>
       <div>
-        <IconButton
-          onClick={() => alert('Add login modal')}
-          className={'relative'}
-        >
+        <IconButton>
           <AccountCircle className={iconStyle} />
         </IconButton>
 
-        <IconButton onClick={() => setLikedItemOpen(!isLikedItemOpen)}>
+        <IconButton
+          onClick={() => setLikedItemOpen(!isLikedItemOpen)}
+          className={classNames({ '!bg-neutral-500 ': isLikedItemOpen })}
+        >
           {likedProducts.length > 0 && typeof window !== 'undefined' ? (
             <Favorite className={iconStyle} />
           ) : (
@@ -51,7 +52,10 @@ export const NavIcons: FC = () => {
           )}
         </IconButton>
 
-        <IconButton onClick={() => setCartOpen(!isCartOpen)}>
+        <IconButton
+          onClick={() => setCartOpen(!isCartOpen)}
+          className={classNames({ '!bg-neutral-500 ': isCartOpen })}
+        >
           {cartProducts.length > 0 && typeof window !== 'undefined' ? (
             <ShoppingBag className={iconStyle} />
           ) : (

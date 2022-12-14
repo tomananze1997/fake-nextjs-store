@@ -1,7 +1,8 @@
 import { SingleLikedOrCartItem } from 'components';
+import type { NextPage } from 'next';
 import { useLikedProducts } from 'providers';
 
-const LikedItems = () => {
+const LikedItems: NextPage = () => {
   const [likedProducts, toggleLikedProduct] = useLikedProducts();
 
   return (

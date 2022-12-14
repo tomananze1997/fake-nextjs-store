@@ -11,7 +11,6 @@ export const Layout: FC<LayoutTypes> = ({ children }) => (
     <div className='flex h-screen flex-col'>
       <Nav />
       <main>{children}</main>
-
       <Footer />
     </div>
   </>

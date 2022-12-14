@@ -1,8 +1,9 @@
 import { SingleLikedOrCartItem } from 'components';
+import type { NextPage } from 'next';
 import { useCartProducts } from 'providers';
 import type { Product } from 'types';
 
-const CartItems = () => {
+const CartItems: NextPage = () => {
   const [cartProducts] = useCartProducts();
 
   return (

@@ -1,7 +1,7 @@
 import { DropdownItem } from './DropdownItem';
 import classNames from 'classnames';
 import { CustomButton } from 'components';
-import type { LegacyRef } from 'react';
+import type { FC, LegacyRef } from 'react';
 import type { Product } from 'types';
 
 type DropdownProps = {
@@ -10,11 +10,11 @@ type DropdownProps = {
   products?: Product[];
 };
 
-export const Dropdown = ({ innerRef, isOpen, products }: DropdownProps) => (
+export const Dropdown: FC<DropdownProps> = ({ innerRef, isOpen, products }) => (
   <div
     ref={innerRef}
     className={classNames(
-      'absolute top-8 right-4 z-40 flex h-80 w-56 flex-col overflow-y-auto border border-2 border-black bg-white shadow ',
+      'absolute top-10 right-4 z-40 flex h-80 w-56 flex-col overflow-y-auto border border-2 border-black bg-white shadow ',
       { 'hidden ': !isOpen },
       { 'flex h-20': products && products.length === 0 }
     )}

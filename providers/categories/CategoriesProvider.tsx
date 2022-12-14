@@ -15,7 +15,7 @@ export const CategoriesProvider: FC<CategoriesProvider> = ({ children }) => {
     getCategoriesData();
   }, []);
 
-  const getCategoriesData = () => {
+  const getCategoriesData = (): void => {
     axiosConfig.get('/categories').then(({ data }: { data: Category[] }) => {
       setCategories(data);
     });

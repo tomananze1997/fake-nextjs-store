@@ -1,3 +1,4 @@
+import type { Context} from 'react';
 import { createContext } from 'react';
 import type { Product } from 'types';
 
@@ -7,8 +8,9 @@ type LikedProductsContextType = {
   removeLikedProducts: (item: Product) => void;
 };
 
-export const LikedProductsContext = createContext<LikedProductsContextType>({
-  likedProducts: [],
-  toggleLikedProduct: () => [],
-  removeLikedProducts: () => []
-});
+export const LikedProductsContext: Context<LikedProductsContextType> =
+  createContext<LikedProductsContextType>({
+    likedProducts: [],
+    toggleLikedProduct: () => [],
+    removeLikedProducts: () => []
+  });
